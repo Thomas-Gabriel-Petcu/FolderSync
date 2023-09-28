@@ -1,0 +1,17 @@
+C:\Users\thoma\Documents\GitHub\FolderSync\FolderSync\bin\Release\net6.0-windows\FolderSync.exe
+C:\Users\thoma\Documents\GitHub\FolderSync\FolderSync\bin\Release\net6.0-windows\FolderSync.deps.json
+C:\Users\thoma\Documents\GitHub\FolderSync\FolderSync\bin\Release\net6.0-windows\FolderSync.runtimeconfig.json
+C:\Users\thoma\Documents\GitHub\FolderSync\FolderSync\bin\Release\net6.0-windows\FolderSync.dll
+C:\Users\thoma\Documents\GitHub\FolderSync\FolderSync\bin\Release\net6.0-windows\FolderSync.pdb
+C:\Users\thoma\Documents\GitHub\FolderSync\FolderSync\obj\Release\net6.0-windows\FolderSync.csproj.AssemblyReference.cache
+C:\Users\thoma\Documents\GitHub\FolderSync\FolderSync\obj\Release\net6.0-windows\FolderSync.Form1.resources
+C:\Users\thoma\Documents\GitHub\FolderSync\FolderSync\obj\Release\net6.0-windows\FolderSync.csproj.GenerateResource.cache
+C:\Users\thoma\Documents\GitHub\FolderSync\FolderSync\obj\Release\net6.0-windows\FolderSync.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\thoma\Documents\GitHub\FolderSync\FolderSync\obj\Release\net6.0-windows\FolderSync.AssemblyInfoInputs.cache
+C:\Users\thoma\Documents\GitHub\FolderSync\FolderSync\obj\Release\net6.0-windows\FolderSync.AssemblyInfo.cs
+C:\Users\thoma\Documents\GitHub\FolderSync\FolderSync\obj\Release\net6.0-windows\FolderSync.csproj.CoreCompileInputs.cache
+C:\Users\thoma\Documents\GitHub\FolderSync\FolderSync\obj\Release\net6.0-windows\FolderSync.dll
+C:\Users\thoma\Documents\GitHub\FolderSync\FolderSync\obj\Release\net6.0-windows\refint\FolderSync.dll
+C:\Users\thoma\Documents\GitHub\FolderSync\FolderSync\obj\Release\net6.0-windows\FolderSync.pdb
+C:\Users\thoma\Documents\GitHub\FolderSync\FolderSync\obj\Release\net6.0-windows\FolderSync.genruntimeconfig.cache
+C:\Users\thoma\Documents\GitHub\FolderSync\FolderSync\obj\Release\net6.0-windows\ref\FolderSync.dll

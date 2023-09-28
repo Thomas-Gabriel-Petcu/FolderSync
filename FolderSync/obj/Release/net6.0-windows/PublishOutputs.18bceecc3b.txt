@@ -1,0 +1,5 @@
+C:\Users\thoma\Documents\GitHub\FolderSync\ExportedApp\FolderSync.exe
+C:\Users\thoma\Documents\GitHub\FolderSync\ExportedApp\FolderSync.dll
+C:\Users\thoma\Documents\GitHub\FolderSync\ExportedApp\FolderSync.deps.json
+C:\Users\thoma\Documents\GitHub\FolderSync\ExportedApp\FolderSync.runtimeconfig.json
+C:\Users\thoma\Documents\GitHub\FolderSync\ExportedApp\FolderSync.pdb
