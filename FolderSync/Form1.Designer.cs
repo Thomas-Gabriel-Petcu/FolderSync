@@ -33,6 +33,8 @@
             notifyIcon1 = new NotifyIcon(components);
             contextMenuStripTray = new ContextMenuStrip(components);
             ExittoolStripMenuItem = new ToolStripMenuItem();
+            richTextBox1 = new RichTextBox();
+            argsWarningLabel = new Label();
             contextMenuStripTray.SuspendLayout();
             SuspendLayout();
             // 
@@ -56,17 +58,51 @@
             ExittoolStripMenuItem.Text = "Exit FolderSync";
             ExittoolStripMenuItem.Click += ExittoolStripMenuItem_Click;
             // 
+            // richTextBox1
+            // 
+            richTextBox1.BackColor = Color.FromArgb(64, 64, 64);
+            richTextBox1.ForeColor = SystemColors.InactiveCaption;
+            richTextBox1.Location = new Point(29, 27);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.ReadOnly = true;
+            richTextBox1.ScrollBars = RichTextBoxScrollBars.Vertical;
+            richTextBox1.Size = new Size(395, 570);
+            richTextBox1.TabIndex = 1;
+            richTextBox1.Text = "";
+            // 
+            // argsWarningLabel
+            // 
+            argsWarningLabel.AutoSize = true;
+            argsWarningLabel.BackColor = SystemColors.AppWorkspace;
+            argsWarningLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            argsWarningLabel.ForeColor = Color.Yellow;
+            argsWarningLabel.Location = new Point(507, 30);
+            argsWarningLabel.Name = "argsWarningLabel";
+            argsWarningLabel.Size = new Size(461, 21);
+            argsWarningLabel.TabIndex = 2;
+            argsWarningLabel.Text = "Warning! Valid arguments not found, waitig for arguments.";
+            argsWarningLabel.Visible = false;
+            // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = SystemColors.ControlDarkDark;
+            ClientSize = new Size(1029, 630);
+            Controls.Add(argsWarningLabel);
+            Controls.Add(richTextBox1);
+            Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(4);
+            MaximumSize = new Size(1045, 669);
+            MinimumSize = new Size(1045, 669);
             Name = "Form1";
-            Text = "Form1";
+            Text = "FolderSync";
             FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             contextMenuStripTray.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -74,5 +110,7 @@
         private NotifyIcon notifyIcon1;
         private ContextMenuStrip contextMenuStripTray;
         private ToolStripMenuItem ExittoolStripMenuItem;
+        private RichTextBox richTextBox1;
+        private Label argsWarningLabel;
     }
 }

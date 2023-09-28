@@ -15,35 +15,15 @@ namespace FolderSync
         {
             InitializeComponent();
             notifyIcon1.ContextMenuStrip = contextMenuStripTray;
-            
-            
+            if (!AttemptInitialization())
+            {
+                argsWarningLabel.Visible = true;
+            }
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            string[] args = Environment.GetCommandLineArgs();
-            //if args are not correct notify the user
-            //A) Previously saved args will be used instead (if they exist)
-            //B) Application will run with a simple GUI for argument passing.
-            //if args are correct continue using passed values and save args to file
-            //foreach (string arg in args)
-            //{
-            //    MessageBox.Show($"{arg} with index {Array.IndexOf(args, arg)}");
-            //}
-            if (!ArgsProcessed(args))
-            {
-                string[] savedArgs = RetrieveSavedArgs();
-                if (!(savedArgs.Length > 1))
-                {
-                    MessageBox.Show("No previously saved arguments could be retrieved!\n Application will open interface for arguments passing.");
-                    //open a form for arguments passing.
-                    return;
-                }
-                ArgsProcessed(savedArgs);
-                return;
-            }
-            SaveArgs(args);
 
-            //From this point on we can use the args for sync operations
+            SyncManager.Sync(sourcePath, replicaPath);
         }
         #region MinimizeFunctionality
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -65,6 +45,24 @@ namespace FolderSync
         }
         #endregion
 
+        public bool AttemptInitialization()
+        {
+            string[] args = Environment.GetCommandLineArgs();
+            if (!ArgsProcessed(args))
+            {
+                string[] savedArgs = RetrieveSavedArgs();
+                if (!(savedArgs.Length > 1))
+                {
+                    MessageBox.Show("No previously saved arguments could be retrieved!\n Application will open interface for arguments passing.");
+                    return false;
+                }
+                ArgsProcessed(savedArgs);
+                return false;
+            }
+            SaveArgs(args);
+            argsWarningLabel.Visible = false;
+            return true;
+        }
         private void SaveArgs(string[] args)
         {
             if (!ArgsValidation(args)) return; //Incorrect args format
@@ -135,5 +133,7 @@ namespace FolderSync
             logPath = args[4];
             return true;
         }
+
+
     }
 }

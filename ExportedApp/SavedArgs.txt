@@ -1,0 +1,5 @@
+C:\Users\thoma\Documents\GitHub\FolderSync\ExportedApp\FolderSync.dll
+C:\Users\thoma\Documents\GitHub\FolderSync\ExportedApp\Source
+C:\Users\thoma\Documents\GitHub\FolderSync\ExportedApp\Replica
+10
+C:\Users\thoma\Documents\GitHub\FolderSync\ExportedApp\UtilityFiles\Log.txt
