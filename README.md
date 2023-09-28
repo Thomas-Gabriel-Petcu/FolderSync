@@ -46,9 +46,9 @@ Because no arguments were given right away you will be prompted with the message
 ![Exit](https://github.com/Thomas-Gabriel-Petcu/FolderSync/assets/73488732/634735dc-5ca0-4f12-a8d9-28f9b015290e)
 
 <br>
-<b>If running from Command Prompt</b> <br>
-1. Navigate to directory where FolderSync.exe is using "cd your-path-here"<br>
-2. Use command "FolderSync.exe --help" to get the following help pop-up:<br>
-![popup6](https://github.com/Thomas-Gabriel-Petcu/FolderSync/assets/73488732/6a58ef4e-fe78-4d14-a09d-d18c38482140)
-
-
+If running from Command Prompt<br>
+Navigate to directory where FolderSync.exe is using "cd your-path-here"<br>
+Use command "FolderSync.exe --help" to get the following help pop-up:
+![screenshot](https://github.com/Thomas-Gabriel-Petcu/FolderSync/assets/73488732/44d808c6-e1a4-4735-8ead-f155c2c31dd3)
+<br>
+Use command "FolderSync.exe source replica interval log" as showin in help message to run the app with arguments.
