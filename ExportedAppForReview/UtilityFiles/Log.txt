@@ -1,0 +1,8 @@
+CREATED C:\Users\thoma\Documents\GitHub\FolderSync\ExportedAppForReview\Replica\New folder (2) Folder at system Date/Time: 2023-09-28 19:51:10
+CREATED C:\Users\thoma\Documents\GitHub\FolderSync\ExportedAppForReview\Replica\New folder (3) Folder at system Date/Time: 2023-09-28 19:51:10
+CREATED C:\Users\thoma\Documents\GitHub\FolderSync\ExportedAppForReview\Replica\New folderLayer1 Folder at system Date/Time: 2023-09-28 19:51:10
+CREATED C:\Users\thoma\Documents\GitHub\FolderSync\ExportedAppForReview\Replica\New folderLayer1\New folderLayer2 Folder at system Date/Time: 2023-09-28 19:51:10
+CREATED C:\Users\thoma\Documents\GitHub\FolderSync\ExportedAppForReview\Replica\New folderLayer1\New folderLayer2\New folderLayer3 Folder at system Date/Time: 2023-09-28 19:51:10
+CREATED C:\Users\thoma\Documents\GitHub\FolderSync\ExportedAppForReview\Replica\New folderLayer1\New folderLayer2\New folderLayer3 Folder at system Date/Time: 2023-09-28 19:51:10
+DELETED New folder Folder at system Date/Time: 2023-09-28 19:51:10
+COPIED New Rich Text Document.rtf File at system Date/Time: 2023-09-28 19:51:10 to destination C:\Users\thoma\Documents\GitHub\FolderSync\ExportedAppForReview\Replica\New Rich Text Document.rtf
