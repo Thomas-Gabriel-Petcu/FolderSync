@@ -1,5 +1,5 @@
 # FolderSync
-FolderSync is a synchronization application that synchronizes a replica directory to be identical to a given source directory periodically.
+FolderSync is a synchronization application that synchronizes the contents of a replica directory to be identical to the contents of a source directory.
 
 ## Selling Points
 - User friendly interface
@@ -17,7 +17,7 @@ FolderSync is a synchronization application that synchronizes a replica director
    - Launching app through Command Prompt and passing arguments there
    - GUI - utilizing the user friendly GUI
    - Saved Arguments - Previous successfully used arguments are saved to file and reutilized if newly passed arguments are incorrect.
- - User friendly GUI - has a simple and easy to use GUI with log display and easy argument modifications.
+ - User friendly GUI - has a simple and easy to use GUI with log display and easy argument modification features.
 ## Technologies Used
 
 C# programming Language<br>
@@ -44,11 +44,17 @@ Because no arguments were given right away you will be prompted with the message
 7. You can close the application with the X button in the top right corner and have it run in the background.
 8. To terminate the application right click on the icon and click "Exit FolderSync"<br>
 ![Exit](https://github.com/Thomas-Gabriel-Petcu/FolderSync/assets/73488732/634735dc-5ca0-4f12-a8d9-28f9b015290e)
-
 <br>
-If running from Command Prompt<br>
+Next time when you run FolderSync it will auto-load previous arguments for convenience.
+<br>
+<br>
+<b>If running from Command Prompt</b><br>
 Navigate to directory where FolderSync.exe is using "cd your-path-here"<br>
-Use command "FolderSync.exe --help" to get the following help pop-up:
-![screenshot](https://github.com/Thomas-Gabriel-Petcu/FolderSync/assets/73488732/44d808c6-e1a4-4735-8ead-f155c2c31dd3)
+Use command "FolderSync.exe --help" to get the help pop-up
 <br>
-Use command "FolderSync.exe source replica interval log" as showin in help message to run the app with arguments.
+Use command "FolderSync.exe source replica interval log" to run the app with arguments.<br>
+Options <br>
+source - source directory path<br>
+replica - replica directory path<br>
+interval - interval between sync operations expressed in seconds<br>
+log - path to log file
