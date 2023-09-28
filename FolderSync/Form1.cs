@@ -1,5 +1,9 @@
 using System.Reflection.Metadata.Ecma335;
 using System.IO;
+using System.Security.Principal;
+using System.Diagnostics;
+using System;
+
 namespace FolderSync
 {
     public partial class Form1 : Form
@@ -15,15 +19,26 @@ namespace FolderSync
         {
             InitializeComponent();
             notifyIcon1.ContextMenuStrip = contextMenuStripTray;
-            if (!AttemptInitialization())
-            {
-                argsWarningLabel.Visible = true;
-            }
+
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            if (!RanAsAdmin())
+            {
+                labelWarningAdmin.Visible = true;
+            }
+            if (!AttemptInitialization())
+            {
+                argsWarningLabel.Visible = true;
+                return;
+            }
+            var startTimeSpan = TimeSpan.Zero;
+            var periodTimeSpan = TimeSpan.FromSeconds(intervalSeconds);
 
-            SyncManager.Sync(sourcePath, replicaPath);
+            var timer = new System.Threading.Timer((e) =>
+            {
+                SyncManager.Sync(sourcePath, replicaPath);
+            }, null, startTimeSpan, periodTimeSpan);
         }
         #region MinimizeFunctionality
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -57,10 +72,21 @@ namespace FolderSync
                     return false;
                 }
                 ArgsProcessed(savedArgs);
-                return false;
+                argsWarningLabel.Visible = false;
+                textBoxSource.Text = sourcePath;
+                textBoxReplica.Text = replicaPath;
+                textBoxInterval.Text = intervalSeconds.ToString();
+                textBoxLogPath.Text = logPath;
+                MessageBox.Show($"Initialized with SAVED args\n {savedArgs[0]} \n {savedArgs[1]} \n {savedArgs[2]} \n {savedArgs[3]} \n {savedArgs[4]}");
+                return true;
             }
             SaveArgs(args);
             argsWarningLabel.Visible = false;
+            textBoxSource.Text = sourcePath;
+            textBoxReplica.Text = replicaPath;
+            textBoxInterval.Text = intervalSeconds.ToString();
+            textBoxLogPath.Text = logPath;
+            MessageBox.Show($"Initialized with args\n {args[0]} \n {args[1]} \n {args[2]} \n {args[3]} \n {args[4]}");
             return true;
         }
         private void SaveArgs(string[] args)
@@ -80,7 +106,7 @@ namespace FolderSync
         }
         private string[] RetrieveSavedArgs()
         {
-            //MessageBox.Show(savedArgsFilePath);
+            MessageBox.Show("Searching for previously saved arguments");
             if (File.Exists(savedArgsFilePath))
             {
                 //MessageBox.Show(savedArgsFilePath);
@@ -94,7 +120,8 @@ namespace FolderSync
             string errorMessage = "";
             if (!(args.Length > 1))
             {
-                //MessageBox.Show($"Args length is {args.Length}");
+                errorMessage += "Warning: no arguments found";
+                MessageBox.Show(errorMessage);
                 return false;
             }
             if (!Directory.Exists(args[1]))//First element is always executable so start at second
@@ -115,7 +142,6 @@ namespace FolderSync
             }
             if (errorMessage != "")
             {
-                errorMessage += "Searching for previously saved arguments";
                 MessageBox.Show(errorMessage);
                 return false;
             }
@@ -133,7 +159,43 @@ namespace FolderSync
             logPath = args[4];
             return true;
         }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string exeName = Environment.GetCommandLineArgs()[0];
+            string source = textBoxSource.Text;
+            string replica = textBoxReplica.Text;
+            string interval = textBoxInterval.Text;
+            string log = textBoxLogPath.Text;
+            string[] args = { exeName, source, replica, interval, log };
+            string constructedArgs = "";
+            if (!ArgsProcessed(args))
+            {
+                return;
+            }
+            SaveArgs(args);
+            constructedArgs = $"{source} {replica} {interval} {log}";
+            argsWarningLabel.Visible = false;
+            //MessageBox.Show($"Re-run with args\n {args[0]} \n {args[1]} \n {args[2]} \n {args[3]} \n {args[4]}");
+            RunWithArguments(constructedArgs);
+        }
+        private bool RanAsAdmin()
+        {
+            WindowsIdentity user = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(user);
 
-
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+        private void RunWithArguments(string args)
+        {
+            try
+            {
+                Process.Start(Application.ExecutablePath, args);
+                Application.Exit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
     }
 }

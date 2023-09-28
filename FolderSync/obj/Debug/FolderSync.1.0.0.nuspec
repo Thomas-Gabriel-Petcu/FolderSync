@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>FolderSync</id>
+    <version>1.0.0</version>
+    <authors>FolderSync</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework="net6.0-windows7.0" />
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net6.0-windows7.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WindowsForms" />
+      </group>
+    </frameworkReferences>
+    <contentFiles>
+      <files include="any/net6.0-windows7.0/NotifyIconFolderSync.ico" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="C:\Users\thoma\Documents\GitHub\FolderSync\FolderSync\bin\Debug\net6.0-windows\FolderSync.runtimeconfig.json" target="lib\net6.0-windows7.0\FolderSync.runtimeconfig.json" />
+    <file src="C:\Users\thoma\Documents\GitHub\FolderSync\FolderSync\bin\Debug\net6.0-windows\FolderSync.dll" target="lib\net6.0-windows7.0\FolderSync.dll" />
+    <file src="C:\Users\thoma\Documents\GitHub\FolderSync\FolderSync\NotifyIconFolderSync.ico" target="content\NotifyIconFolderSync.ico" />
+    <file src="C:\Users\thoma\Documents\GitHub\FolderSync\FolderSync\NotifyIconFolderSync.ico" target="contentFiles\any\net6.0-windows7.0\NotifyIconFolderSync.ico" />
+  </files>
+</package>
