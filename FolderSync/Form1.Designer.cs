@@ -185,11 +185,11 @@
             labelWarningAdmin.BackColor = SystemColors.AppWorkspace;
             labelWarningAdmin.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             labelWarningAdmin.ForeColor = Color.Yellow;
-            labelWarningAdmin.Location = new Point(442, 69);
+            labelWarningAdmin.Location = new Point(498, 70);
             labelWarningAdmin.Name = "labelWarningAdmin";
-            labelWarningAdmin.Size = new Size(575, 21);
+            labelWarningAdmin.Size = new Size(497, 21);
             labelWarningAdmin.TabIndex = 14;
-            labelWarningAdmin.Text = "Warning! No administrator priviledges. Cannot perform delete operations.";
+            labelWarningAdmin.Text = "Warning! No administrator privileges. Some operations may fail";
             labelWarningAdmin.Visible = false;
             // 
             // Form1

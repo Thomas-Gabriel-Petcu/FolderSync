@@ -9,11 +9,7 @@ namespace FolderSync
 {
     public static class SyncManager
     {
-        public static string LogPath
-        {
-            get { return LogPath; }
-            set { LogPath = value; }
-        }
+        public static string LogPath { get; set; } = "";
         /// <summary>
         /// Executes necessary code for directory sync.
         /// </summary>
@@ -32,7 +28,7 @@ namespace FolderSync
                 {
                     Directory.CreateDirectory(relativeDir);
                     //LOG CREATION OF DIRECTORY
-                    OutputToLog($"CREATED {Path.GetFileName(relativeDir)} Folder at system Date/Time: {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}", LogPath);
+                    OutputToLog($"CREATED {relativeDir} Folder at system Date/Time: {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}", LogPath);
                 }
             }
             //Create relative folder paths from replica paths for source folder
@@ -45,15 +41,15 @@ namespace FolderSync
                     //LOG DELETION OF FOLDER
                     try
                     {
-                        Directory.Delete(relativeDir);
+                        Directory.Delete(dir);
                         // LOG FILE DELETE
                         OutputToLog($"DELETED {Path.GetFileName(relativeDir)} Folder at " +
                         $"system Date/Time: {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}", LogPath);
                     }
-                    catch (UnauthorizedAccessException ex)
+                    catch (Exception ex)
                     {
                         //LOG DELETION ERROR
-                        OutputToLog($"ERROR {ex}", LogPath);
+                        //OutputToLog($"ERROR {ex}", LogPath);
                     }
                 }
             }
@@ -84,14 +80,12 @@ namespace FolderSync
                         byte[] sourceHashBytes = md5.ComputeHash(sourceStream);
                         byte[] replicaHashBytes = md5.ComputeHash(replicaStream);
 
-                        sourceStream.Close();
-                        replicaStream.Close();
                         if (!CompareByteArrays(sourceHashBytes, replicaHashBytes))
                         {
                             File.Copy(sourceFilePath, relative, true);
                             //LOG FILE COPY
                             OutputToLog($"COPIED {Path.GetFileName(Path.GetFileName(sourceFilePath))} File at " +
-                             $"system Date/Time: {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} to destination {relative}", LogPath);
+                            $"system Date/Time: {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} to destination {relative}", LogPath);
                         }
                     }
                 }
@@ -102,19 +96,20 @@ namespace FolderSync
             foreach (string replicaFilePath in replicaFilePaths)
             {
                 string relative = GetPathRelativeToFolder(replicaFilePath, replicaPath, sourcePath);
+                
                 if (!File.Exists(relative))
                 {
                     try
                     {
-                        File.Delete(replicaPath);
-                        // LOG FILE DELETE
+                        File.Delete(replicaFilePath);
+                        //LOG FILE DELETE
                         OutputToLog($"DELETED {Path.GetFileName(replicaPath)} Folder at " +
                         $"system Date/Time: {DateTime.Now:yyyy-MM-dd HH:mm:ss}", LogPath);
                     }
-                    catch (UnauthorizedAccessException ex)
+                    catch (Exception ex)
                     {
                         //LOG DELETION ERROR
-                        OutputToLog($"ERROR {ex}", LogPath);
+                        //OutputToLog($"ERROR {ex}", LogPath);
                     }
                 }
             }
@@ -177,7 +172,6 @@ namespace FolderSync
         {
             if (!File.Exists(logFilePath))
             {
-                MessageBox.Show($"No log file found at {logFilePath}");
                 return;
             }
             using (StreamWriter writer = new StreamWriter(logFilePath, true))
@@ -200,7 +194,7 @@ namespace FolderSync
             int sourceNameIndex = path.IndexOf(sourceDirName);
             if (sourceNameIndex >= 0) //shouldn't really ever be a negative value?
             {
-                result += "\\";
+                //result += "\\";
                 result += path.Substring(sourceNameIndex + sourceDirName.Length);
             }
             return result;

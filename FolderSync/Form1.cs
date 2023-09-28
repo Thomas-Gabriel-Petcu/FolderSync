@@ -8,13 +8,12 @@ namespace FolderSync
 {
     public partial class Form1 : Form
     {
-        private float timeIntervalInMinutes;
-        System.Timers.Timer timer = new System.Timers.Timer();
         string sourcePath = "";
         string replicaPath = "";
         int intervalSeconds = 0;
         string logPath = "";
         string savedArgsFilePath = "SavedArgs.txt";
+
         public Form1()
         {
             InitializeComponent();
@@ -23,22 +22,7 @@ namespace FolderSync
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            if (!RanAsAdmin())
-            {
-                labelWarningAdmin.Visible = true;
-            }
-            if (!AttemptInitialization())
-            {
-                argsWarningLabel.Visible = true;
-                return;
-            }
-            var startTimeSpan = TimeSpan.Zero;
-            var periodTimeSpan = TimeSpan.FromSeconds(intervalSeconds);
-
-            var timer = new System.Threading.Timer((e) =>
-            {
-                SyncManager.Sync(sourcePath, replicaPath);
-            }, null, startTimeSpan, periodTimeSpan);
+            Run();
         }
         #region MinimizeFunctionality
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -59,6 +43,31 @@ namespace FolderSync
             Application.Exit();
         }
         #endregion
+
+        public void Run()
+        {
+            if (!RanAsAdmin())
+            {
+                labelWarningAdmin.Visible = true;
+            }
+            if (!AttemptInitialization())
+            {
+                argsWarningLabel.Visible = true;
+            }
+            else
+            {
+                SyncManager.LogPath = logPath;
+                System.Threading.Timer synctimer;
+                var startSpan = TimeSpan.Zero;
+                var periodSpan = TimeSpan.FromSeconds(intervalSeconds);
+                synctimer = new System.Threading.Timer(SyncCallback, null, startSpan, periodSpan);
+            }
+        }
+        private void SyncCallback(object state)
+        {
+            WriteLogToConsole();
+            SyncManager.Sync(sourcePath, replicaPath);
+        }
 
         public bool AttemptInitialization()
         {
@@ -195,6 +204,16 @@ namespace FolderSync
             catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+        private void WriteLogToConsole()
+        {
+            richTextBox1.Clear();
+            string[] lines = File.ReadAllLines(logPath);
+            if (lines.Length <= 0) return;
+            foreach (string line in lines)
+            {
+                richTextBox1.AppendText(line + Environment.NewLine);
             }
         }
     }
